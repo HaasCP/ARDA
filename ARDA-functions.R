@@ -2,6 +2,10 @@
 # Author: Christian Haas
 # Date: May 2019
 ##
+# Required Libraries ---------------------------------------------
+
+library(tidyverse) # see http://tidyverse.org/
+library(XML) # https://cran.r-project.org/web/packages/XML
 
 # Import functions --------------------------------------------------------
 
