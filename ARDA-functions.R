@@ -1,14 +1,7 @@
-## This R script provides functions and standard code to import, tidy, transform, and visualize raw data recorded with Agilent systems.
+## This R script provides functions to import all available raw data recorded with Agilent systems.
 # Author: Christian Haas
 # Date: May 2019
 ##
-# Libraries and prerequisites ---------------------------------------------
-
-library(tidyverse) # see http://tidyverse.org/
-library(XML) # https://cran.r-project.org/web/packages/XML
-library(cowplot)
-library(ggrepel)
-library(ggpubr)
 
 # Import functions --------------------------------------------------------
 
