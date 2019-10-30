@@ -279,8 +279,8 @@ makeResultTable <- function(reactorVolume)
       } else {
         conc <- c()
         for (j in 1:length(expSignals$expPeakTime)) {
-          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.11 &
-                            report$V2 <= expSignals$expPeakTime[j] + 0.11)
+          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.06 &
+                            report$V2 <= expSignals$expPeakTime[j] + 0.06)
           if(is_empty(rowNum)){
             conc <- c(conc, 0)
           } else{
