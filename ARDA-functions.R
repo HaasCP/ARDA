@@ -189,3 +189,117 @@ importReports <- function()
   return(reportList)
 }
 
+makeResultTable <- function(reactorVolume)
+{
+  # Import data
+  valve <- getValveFunc()
+  methods <- importMethod()
+  reports <- importReports()
+  
+  # Flow rates and reaction times
+  flowRate <- c()
+  for (i in 1:length(valve$Samples$time)) {
+    flowRate <- c(flowRate, methods$AgilentPumpDriver1.RapidControl.MethodXML.xml$Flow[max(which(methods$AgilentPumpDriver1.RapidControl.MethodXML.xml$Time < valve$Samples$time[i]))])
+  }
+  resultTable <- data.frame("flowRate" = flowRate,
+                            "reactTime" = reactorVolume / flowRate)
+  
+  # Starting concentrations on the reactor
+  for (i in 1:length(reactants)) {
+    conc <- c()
+    for (j in 1:length(valve$Samples$time)) {
+      conc <- c(conc, (methods$AgilentPumpDriver1.RapidControl.MethodXML.xml[[paste0("Percent", reactants[[i]]$channel)]][max(which(methods$AgilentPumpDriver1.RapidControl.MethodXML.xml$Time < valve$Samples$time[j]))] * reactants[[i]]$bottleConc / 100))
+    }
+    resultTable[paste0("conc0", names(reactants)[i])] <- conc
+  }
+  
+  # Reactant concentrations after the reaction
+  for (i in 1:length(reactants)) {
+    report <- reports[[reactants[[i]]$detectWavelength]]
+    expSignals <- data.frame("injectTime" = valve[["Injections"]]$time,
+                             "expPeakTime" = valve[["Injections"]]$time + reactants[[i]][["retTime"]])
+    if(is_empty(reactants[[i]]$calibFactor)){
+      area <- c()
+      for (j in 1:length(expSignals$expPeakTime)) {
+        rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.1 &
+                          report$V2 <= expSignals$expPeakTime[j] + 0.1)
+        if(is_empty(rowNum)){
+          area <- c(area, 0)
+        } else{#
+          area <- c(area, report$V5[rowNum])
+        }
+      }
+      toOrder <- data.frame("area" = area,
+                            "sampleTime" = valve$Combined$sample)
+      toOrder <- toOrder[order(toOrder$sampleTime), ]
+      area <- toOrder$area
+      resultTable[paste0("area", names(reactants)[i])] <- area
+    } else {
+      conc <- c()
+      for (j in 1:length(expSignals$expPeakTime)) {
+        rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.1 &
+                          report$V2 <= expSignals$expPeakTime[j] + 0.1)
+        if(is_empty(rowNum)){
+          conc <- c(conc, 0)
+        } else{
+          conc <- c(conc, (report$V5[rowNum] / reactants[[i]]$calibFactor))
+        }
+      }
+      toOrder <- data.frame("conc" = conc,
+                            "sampleTime" = valve$Combined$sample)
+      toOrder <- toOrder[order(toOrder$sampleTime), ]
+      conc <- toOrder$conc
+      resultTable[paste0("conc", names(reactants)[i])] <- conc
+      resultTable["conversion"] <- (1 - resultTable[paste0("conc", names(reactants)[i])] / resultTable[paste0("conc0", names(reactants)[i])]) * 100
+    }
+  }
+  
+  # Product areas or concentrations after the reaction
+  if(!is_empty(products)) {
+    for (i in 1:length(products)) {
+      report <- reports[[products[[i]]$detectWavelength]]
+      expSignals <- data.frame("injectTime" = valve[["Injections"]]$time,
+                               "expPeakTime" = valve[["Injections"]]$time + products[[i]][["retTime"]])
+      if(is_empty(products[[i]]$calibFactor)){
+        area <- c()
+        for (j in 1:length(expSignals$expPeakTime)) {
+          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.11 &
+                            report$V2 <= expSignals$expPeakTime[j] + 0.11)
+          if(is_empty(rowNum)){
+            area <- c(area, 0)
+          } else{
+            area <- c(area, report$V5[rowNum])
+          }
+        }
+        toOrder <- data.frame("area" = area,
+                              "sampleTime" = valve$Combined$sample)
+        toOrder <- toOrder[order(toOrder$sampleTime), ]
+        area <- toOrder$area
+        resultTable[paste0("area", names(products)[i])] <- area
+      } else {
+        conc <- c()
+        for (j in 1:length(expSignals$expPeakTime)) {
+          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.11 &
+                            report$V2 <= expSignals$expPeakTime[j] + 0.11)
+          if(is_empty(rowNum)){
+            conc <- c(conc, 0)
+          } else{
+            conc <- c(conc, (report$V5[rowNum] / products[[i]]$calibFactor))
+          }
+        }
+        toOrder <- data.frame("conc" = conc,
+                              "sampleTime" = valve$Combined$sample)
+        toOrder <- toOrder[order(toOrder$sampleTime), ]
+        conc <- toOrder$conc
+        resultTable[paste0("conc", names(products)[i])] <- conc
+      }
+    }
+  }
+  
+  # Add loop information
+  resultTable["deck"] <- as.character(valve$Samples$deck)
+  resultTable["loop"] <- as.character(valve$Samples$loop)
+  resultTable["loopID"] <- paste0(valve$Samples$deck, "-", valve$Samples$loop)
+  return(resultTable)
+}
+
