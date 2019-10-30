@@ -3,7 +3,7 @@ library(devtools)
 makeRDS <- function() {
   fileNames <- dir(path = wd)                       # character vector of all file names in the wd
   folders <- grep("\\.D", fileNames, value = T)      # vector reduced to experimental folders
-  source_url("https://raw.githubusercontent.com/HaasCP/ARDA/master/Screening-Experiments/Transient-Reaction-Times.R", local = TRUE)
+  source_url("https://raw.githubusercontent.com/HaasCP/ARDA/master/Screening-Experiments/Transient-Reaction-Times.R")
   
   i <- 1
   for (i in 1:length(folders)) {
