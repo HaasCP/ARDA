@@ -1,3 +1,4 @@
+# This function merges all rds files
 mergeRDS <- function(){
   fileNames <- dir(path = wd)                        # character vector of all file names in the wd
   folders <- grep("\\.D", fileNames, value = T)      # vector reduced to experimental folders
