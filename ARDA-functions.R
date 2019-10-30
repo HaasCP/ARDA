@@ -302,4 +302,3 @@ makeResultTable <- function(reactorVolume)
   resultTable["loopID"] <- paste0(valve$Samples$deck, "-", valve$Samples$loop)
   return(resultTable)
 }
-
