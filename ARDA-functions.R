@@ -1,4 +1,4 @@
-## This R script provides functions to import all available raw data recorded with Agilent systems.
+## This R script provides functions to import all available raw data recorded with 2D-Agilent systems.
 # Author: Christian Haas
 # Date: May 2019
 ##
