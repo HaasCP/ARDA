@@ -1,10 +1,9 @@
 library(devtools)
 
 makeRDS <- function() {
-  fileNames <- dir(path = wd)                       # character vector of all file names in the wd
+  fileNames <- dir(path = wd)                        # character vector of all file names in the wd
   folders <- grep("\\.D", fileNames, value = T)      # vector reduced to experimental folders
   
-  i <- 1
   for (i in 1:length(folders)) {
     setwd(as.character(folders[i]))                         # sets the the wd to the ith folder of the folderlist
     resultTable <- makeResultTable(reactorVolume = 0.39)    # creates result table for the ith experiment
