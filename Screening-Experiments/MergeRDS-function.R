@@ -11,5 +11,5 @@ mergeRDS <- function(){
   }
   
   dataTable <- bind_rows(dataList, .id = "id")            # create the dataTable from the .rds files in the dataList and adding the id of the sample
-  return(dataList)
+  return(dataTable)
 }
