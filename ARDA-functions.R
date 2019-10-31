@@ -250,7 +250,7 @@ makeResultTable <- function(reactorVolume)
       toOrder <- toOrder[order(toOrder$sampleTime), ]
       conc <- toOrder$conc
       resultTable[paste0("conc", names(reactants)[i])] <- conc
-      resultTable["conversion"] <- (1 - resultTable[paste0("conc", names(reactants)[i])] / resultTable[paste0("conc0", names(reactants)[i])]) * 100
+      resultTable[paste0("conversion", names(reactants)[i])] <- (1 - resultTable[paste0("conc", names(reactants)[i])] / resultTable[paste0("conc0", names(reactants)[i])]) * 100
     }
   }
   
@@ -263,8 +263,8 @@ makeResultTable <- function(reactorVolume)
       if(is_empty(products[[i]]$calibFactor)){
         area <- c()
         for (j in 1:length(expSignals$expPeakTime)) {
-          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.11 &
-                            report$V2 <= expSignals$expPeakTime[j] + 0.11)
+          rowNum <- which(report$V2 >= expSignals$expPeakTime[j] - 0.06 &
+                            report$V2 <= expSignals$expPeakTime[j] + 0.06)
           if(is_empty(rowNum)){
             area <- c(area, 0)
           } else{
