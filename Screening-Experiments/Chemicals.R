@@ -33,7 +33,7 @@ products <- list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = NULL,
-    "retTime" = 6.9
+    "retTime" = 6.97
     ),
   
   "HomoDimCou" = list(
