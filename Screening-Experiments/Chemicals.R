@@ -6,7 +6,7 @@ reactants <- list(
   "NMQ" = list(
     "CAS number" = "606-43-9",
     "detectWavelength" = "328",
-    "calibFactor" = 240640,
+    "calibFactor" = 300000,
     "retTime" = 2.8,
     "bottleConc" = 0.04, # mol/L
     "channel" = "B"
