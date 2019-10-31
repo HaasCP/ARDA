@@ -292,6 +292,9 @@ makeResultTable <- function(reactorVolume)
         toOrder <- toOrder[order(toOrder$sampleTime), ]
         conc <- toOrder$conc
         resultTable[paste0("conc", names(products)[i])] <- conc
+        for (j in 1:length(reactants)) {
+          resultTable[paste0("yield", names(products)[i], "To", names(reactants)[j])] <- resultTable[paste0("conc", names(products)[i])] / resultTable[paste0("conc0", names(reactants)[j])] * 100
+        }
       }
     }
   }
