@@ -11,7 +11,7 @@ reactants <- list(
     "bottleConc" = 0.04, # mol/L
     "channel" = "B"
   ), 
-  "Coumarin" = list(
+  "Cou" = list(
     "CAS number" = "91-64-5",
     "detectWavelength" = "280",
     "calibFactor" = 426640,
@@ -22,21 +22,21 @@ reactants <- list(
 )
 
 products <- list(
-  "Dimer_NMQ" = list(
+  "HomoDimNMQ" = list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = 1704206,
     "retTime" = 6.13
     ),
   
-  "Dimer_Cross" = list(
+  "HeteroDim" = list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = NULL,
     "retTime" = 6.9
     ),
   
-  "Dimer_Cum" = list(
+  "HomoDimCou" = list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = 1629737,
