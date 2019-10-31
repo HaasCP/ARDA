@@ -6,7 +6,7 @@ reactants <- list(
   "NMQ" = list(
     "CAS number" = "606-43-9",
     "detectWavelength" = "328",
-    "calibFactor" = NULL,
+    "calibFactor" = 240640,
     "retTime" = 2.8,
     "bottleConc" = 0.04, # mol/L
     "channel" = "B"
@@ -14,7 +14,7 @@ reactants <- list(
   "Coumarin" = list(
     "CAS number" = "91-64-5",
     "detectWavelength" = "280",
-    "calibFactor" = NULL,
+    "calibFactor" = 426640,
     "retTime" = 3.6,
     "bottleConc" = 0.04, # mol/L
     "channel" = "C"
