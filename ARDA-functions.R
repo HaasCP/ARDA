@@ -303,5 +303,6 @@ makeResultTable <- function(reactorVolume)
   resultTable["deck"] <- as.character(valve$Samples$deck)
   resultTable["loop"] <- as.character(valve$Samples$loop)
   resultTable["loopID"] <- paste0(valve$Samples$deck, "-", valve$Samples$loop)
+  resultTable["injectionTime"] <- valve$Injections$time
   return(resultTable)
 }
