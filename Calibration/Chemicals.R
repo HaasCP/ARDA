@@ -1,5 +1,5 @@
 ## This R script provides all required information on the chemicals used in this project. 
-## Some comment
+##
 # Chemicals ---------------------------------------------------------------
 
 reactants <- list(
