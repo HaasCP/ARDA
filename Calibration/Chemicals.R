@@ -18,6 +18,30 @@ reactants <- list(
     "retTime" = 3.6,
     "bottleConc" = 0.04, # mol/L
     "channel" = "C"
+  ),
+  "HomoDimNMQ" = list(
+    "CAS number" = "",
+    "detectWavelength" = "210",
+    "calibFactor" = NULL,
+    "retTime" = 6.12,
+    "bottleConc" = 0.01, # mol/L
+    "channel" = "D"
+  ),
+  "HeteroDim" = list(
+    "CAS number" = "",
+    "detectWavelength" = "210",
+    "calibFactor" = NULL,
+    "retTime" = 6.97,
+    "bottleConc" = 0.01, # mol/L
+    "channel" = "D"
+  ),
+  "HomoDimCou" = list(
+    "CAS number" = "",
+    "detectWavelength" = "210",
+    "calibFactor" = NULL,
+    "retTime" = 7.75,
+    "bottleConc" = 0.01, # mol/L
+    "channel" = "D"
   )
 )
 
