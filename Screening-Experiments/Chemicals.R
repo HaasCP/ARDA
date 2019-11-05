@@ -26,7 +26,7 @@ products <- list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = 1704206,
-    "retTime" = 6.13
+    "retTime" = 6.12
     ),
   
   "HeteroDim" = list(
