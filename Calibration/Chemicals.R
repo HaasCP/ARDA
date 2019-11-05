@@ -46,24 +46,4 @@ reactants <- list(
 )
 
 products <- list(
-  "HomoDimNMQ" = list(
-    "CAS number" = "",
-    "detectWavelength" = "210",
-    "calibFactor" = NULL,
-    "retTime" = 6.12
-    ),
-  
-  "HeteroDim" = list(
-    "CAS number" = "",
-    "detectWavelength" = "210",
-    "calibFactor" = NULL,
-    "retTime" = 6.97
-    ),
-  
-  "HomoDimCou" = list(
-    "CAS number" = "",
-    "detectWavelength" = "210",
-    "calibFactor" = NULL,
-    "retTime" = 7.84
-    )
 )
