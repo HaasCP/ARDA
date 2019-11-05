@@ -6,7 +6,7 @@ reactants <- list(
   "NMQ" = list(
     "CAS number" = "606-43-9",
     "detectWavelength" = "328",
-    "calibFactor" = 300000,
+    "calibFactor" = 246479,
     "retTime" = 2.8,
     "bottleConc" = 0.04, # mol/L
     "channel" = "B"
@@ -14,7 +14,7 @@ reactants <- list(
   "Cou" = list(
     "CAS number" = "91-64-5",
     "detectWavelength" = "280",
-    "calibFactor" = 426640,
+    "calibFactor" = 424131,
     "retTime" = 3.6,
     "bottleConc" = 0.04, # mol/L
     "channel" = "C"
@@ -25,7 +25,7 @@ products <- list(
   "HomoDimNMQ" = list(
     "CAS number" = "",
     "detectWavelength" = "210",
-    "calibFactor" = 1704206,
+    "calibFactor" = 1704205,
     "retTime" = 6.12
     ),
   
