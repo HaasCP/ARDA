@@ -1,4 +1,4 @@
-## This R script provides all required information on the chemicals used in this project.
+## This R script provides all required information on the chemicals used in this project. 
 ##
 # Chemicals ---------------------------------------------------------------
 
