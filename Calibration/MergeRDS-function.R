@@ -7,10 +7,6 @@ mergeRDS <- function(){
   for (i in 1:length(folders)) {
     setwd(as.character(folders[i]))                         # sets the the wd to the ith folder of the folderlist
     RDS <- read_rds(grep("\\.rds", list.files(), value = T))
-    RDS <- RDS %>% 
-      group_by(reactTime) %>% 
-      mutate_at(vars(5:(length(RDS) - 4)), funs(mean)) %>% 
-      distinct(reactTime, .keep_all = TRUE)
     dataList[[grep("\\.rds", list.files(), value = T)]] = RDS
     setwd(wd) 
   }
