@@ -39,7 +39,7 @@ reactants <- list(
     "CAS number" = "",
     "detectWavelength" = "210",
     "calibFactor" = NULL,
-    "retTime" = 7.75,
+    "retTime" = 7.84,
     "bottleConc" = 0.01, # mol/L
     "channel" = "D"
   )
